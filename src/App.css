@@ -1,42 +1,220 @@
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} 
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;    
+}
+
+.app {
+  max-width: 800px;
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 24px;
+  color: #333333;
+}
+
+/* Notes container */
+.notes-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  /* align-items: center; */ 
+  margin-bottom: 20px;
+}
+
+.note {
+  background-color: #eeeb40;
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 0.5rem; 
+  min-height: 120px;
+  /* max-height: 170px; */
+  max-width: 200px;
+  flex: 1 1 auto; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.note span {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #333333;
+}
+
+.note-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.note .note-footer small {
+  margin-right: 5px;
+}
+
+.delete-icon {
+  cursor: pointer;
+}
+
+.note .delete-icon:hover {
+  color: #ff0000;
+}
+
+/* Add note section */
+.add-note-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.new-note{
+  max-width: 280px;
+}
+
+.add-note-input {
+  height: 36px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border: 1px solid #cccccc;
+  color: #333333;
+  flex-grow: 1;
+  margin-right: 8px;
+}
+
+.add-note-button {
+  background-color: #646cff;
+  color: #ffffff;
+  border: none;
+  height: 36px;
+  padding: 0 15px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-note-button:hover {
+  background-color: #535bf2;
+}
+
+/* Search section */
+.search {
+  display: flex;
+  align-items: center;
+  background-color: rgb(233, 233, 233);
+  border-radius: 10px;
+  padding: 7px;
+  margin-bottom: 1.5em;
+}
+
+.search-icon {
+  color: #888888;
+  margin-right: 10px;
+}
+
+
+.search input {
+  height: 16px;
+  max-width: 400px;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #cccccc;
+  color: #333333;
+  flex-grow: 1;
+  border: none;
+  background-color: rgb(233, 233, 233);
+}
+
+.search input:focus {
+  outline: none;
+}
+
+/* Empty message */
+.empty-message {
   text-align: center;
+  font-style: italic;
+  color: #888888;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app {
+  max-width: 860px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+textarea {
+  border: none;
+  resize: none;
+  background-color: #e2e2e2;
+  width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+textarea:focus {
+  outline: none;
 }
 
-.card {
-  padding: 2em;
+.save {
+  background-color: #e1e1e1;
+  border: none;
+  border-radius: 15px;
+  padding: 5px 10px 5px 10px;
 }
 
-.read-the-docs {
-  color: #888;
+.save:hover {
+  background-color: #ededed;
+  cursor: pointer;
+}
+
+.note-text-area {
+  border: none;
+  border-radius: 12px;
+  padding: 8px 2px;
+}
+
+.remaining-charachters {
+  padding-right: 10px;
+}
+
+.new-note {
+  width: 80%;
 }

@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import Header from './components/Header';
+import Search from './components/Search';
+import NotesList from './components/NotesList';
+import { nanoid } from 'nanoid';
+import './App.css'; 
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [notes, setNotes] = useState([]);
+  const [searchText, setSearchText] = useState('');
+
+  useEffect(() => {
+    const storedNotes = JSON.parse(localStorage.getItem('notes'));
+    if (storedNotes) {
+      setNotes(storedNotes);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('notes', JSON.stringify(notes));
+  }, [notes]);
+
+  const handleAddNote = (text) => {
+    const newNote = {
+      id: nanoid(),
+      text: text,
+      date: new Date().toLocaleDateString()
+    };
+  
+    const updatedNotes = [...notes, newNote];
+    setNotes(updatedNotes);
+    localStorage.setItem('notes', JSON.stringify(updatedNotes));
+  
+    console.log('New note added:', newNote);
+    console.log('Updated notes:', updatedNotes);
+  };
+  
+  const handleDeleteNote = (noteId) => {
+    const updatedNotes = notes.filter((note) => note.id !== noteId);
+    setNotes(updatedNotes);
+    localStorage.setItem('notes', JSON.stringify(updatedNotes));
+  
+    console.log('Note deleted:', noteId);
+    console.log('Updated notes:', updatedNotes);
+  };
+
+  const handleSearchNote = (searchText) => {
+    setSearchText(searchText);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="app">
+      <Header />
+      <Search handleSearchNote={handleSearchNote} />
+      <NotesList
+        notes={notes.filter((note) =>
+          note.text.toLowerCase().includes(searchText.toLowerCase())
+        )}
+        handleAddNote={handleAddNote}
+        handleDeleteNote={handleDeleteNote}
+      />
+    </div>
+  );
+};
 
-export default App
+export default App;
